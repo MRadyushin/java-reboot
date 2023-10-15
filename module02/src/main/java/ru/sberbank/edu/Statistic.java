@@ -10,6 +10,6 @@ public interface Statistic {
     int getLineCount(FileReader fileReader) throws IOException;
     int getSpaceCount(FileReader fileReader) throws IOException;
     String getLongestLine(FileReader fileReader) throws IOException;
-    void save(File fileReader) throws IOException;
+    File save(File fileReader) throws IOException;
 
 }
