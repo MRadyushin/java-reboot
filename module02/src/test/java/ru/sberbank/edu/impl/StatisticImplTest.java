@@ -8,6 +8,7 @@ import ru.sberbank.edu.StatisticImpl;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 
 
 public class StatisticImplTest {
@@ -59,7 +60,7 @@ public class StatisticImplTest {
         StatisticImpl statistic = new StatisticImpl();
         File result = statistic.save(new File(fileName));
 
-        Assert.assertEquals(FileUtils.readLines(expectedFile), FileUtils.readLines(result));
+        Assert.assertEquals(FileUtils.readLines(expectedFile, StandardCharsets.UTF_8), FileUtils.readLines(result, StandardCharsets.UTF_8));
 
     }
 }
