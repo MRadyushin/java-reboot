@@ -10,6 +10,12 @@ public class App
 {
     public static void main( String[] args )
     {
-        System.out.println("Привет" );
+        CustomArrayImpl<Integer> list = new CustomArrayImpl<>();
+        list.add(1);
+        list.add(2);
+        list.add(2);
+        list.add(3);
+
+        System.out.println(list );
     }
 }
