@@ -10,15 +10,31 @@ import java.util.Optional;
 public class CarServiceImpl implements CarService {
     private CarRepository carRepository;
 
+    /**
+     *
+     * @param carRepository
+     */
     public CarServiceImpl(CarRepository carRepository) {
         this.carRepository = carRepository;
     }
 
+    /**
+     * Добавление машины
+     * @param id
+     * @param model
+     * @throws SQLException
+     */
     @Override
     public void addCar(String id, String model) throws SQLException {
         carRepository.createOrUpdate(new Car(id, model));
     }
 
+    /**
+     * Обновление модели
+     * @param id
+     * @param newModel
+     * @throws SQLException
+     */
     @Override
     public void editModel(String id, String newModel) throws SQLException {
         Optional<Car> optCar = carRepository.findById(id);
@@ -26,6 +42,21 @@ public class CarServiceImpl implements CarService {
         updateCarModel(car, newModel);
     }
 
+    /**
+     * Удаление машины
+     * @param id
+     * @throws SQLException
+     */
+    @Override
+    public void deleteCar(String id) throws SQLException {
+        carRepository.deleteById(id);
+    }
+
+    /**
+     * Изменение модели
+     * @param car
+     * @param newModel
+     */
     private void updateCarModel(Car car, String newModel) {
         car.setModel(newModel);
         try {
