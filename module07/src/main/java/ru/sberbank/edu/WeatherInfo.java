@@ -9,17 +9,19 @@ import lombok.NoArgsConstructor;
  */
 @Data
 @NoArgsConstructor
-public class WeatherInfo {
+erInfo {
 
     private String city;
 
     /**
      * Short weather description. Like 'sunny', 'clouds', 'raining', etc
+
      */
     private String shortDescription;
 
     /**
      * Weather description. Like 'broken clouds', 'heavy raining', etc
+
      */
     private String description;
 
@@ -48,3 +50,4 @@ public class WeatherInfo {
      */
     private LocalDateTime expiryTime;
 }
+

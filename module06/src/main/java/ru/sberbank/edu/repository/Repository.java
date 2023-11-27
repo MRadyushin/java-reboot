@@ -9,10 +9,10 @@ public interface Repository<T, I>{
     T createOrUpdate(T t) throws SQLException;
 
     Set<T> createAll(Collection<T> tCollection);
-    Set<T> findAll();
+    Set<T> findAll() throws SQLException;
 
     Optional<T> findById(I id) throws SQLException;
-    Boolean deleteById(I id);
+    Boolean deleteById(I id) throws SQLException;
 
-    Boolean deleteAll();
+    Boolean deleteAll() throws SQLException;
 }

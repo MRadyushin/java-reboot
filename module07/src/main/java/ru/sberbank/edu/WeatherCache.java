@@ -40,6 +40,7 @@ public class WeatherCache {
             cache.put(weatherInfo.getCity(), weatherInfo);
             return weatherInfo;
         }
+
     }
 
     /**
@@ -49,3 +50,4 @@ public class WeatherCache {
         cache.remove(city);
     }
 }
+
