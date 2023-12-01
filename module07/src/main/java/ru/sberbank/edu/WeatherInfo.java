@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
  */
 @Data
 @NoArgsConstructor
-erInfo {
+public class WeatherInfo {
 
     private String city;
 
