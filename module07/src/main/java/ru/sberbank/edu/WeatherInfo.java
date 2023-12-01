@@ -1,20 +1,27 @@
 package ru.sberbank.edu;
 
 import java.time.LocalDateTime;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-public class WeatherInfo {
+/**
+ * Weather info.
+ */
+@Data
+@NoArgsConstructor
+erInfo {
 
     private String city;
 
     /**
-     * Short weather description
-     * Like 'sunny', 'clouds', 'raining', etc
+     * Short weather description. Like 'sunny', 'clouds', 'raining', etc
+
      */
     private String shortDescription;
 
     /**
-     * Weather description.
-     * Like 'broken clouds', 'heavy raining', etc
+     * Weather description. Like 'broken clouds', 'heavy raining', etc
+
      */
     private String description;
 
@@ -39,8 +46,8 @@ public class WeatherInfo {
     private double pressure;
 
     /**
-     * Expiry time of weather info.
-     * If current time is above expiry time then current weather info is not actual!
+     * Expiry time of weather info. If current time is above expiry time then current weather info is not actual!
      */
     private LocalDateTime expiryTime;
 }
+
