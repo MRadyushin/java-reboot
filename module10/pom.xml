@@ -6,57 +6,14 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
+
     <artifactId>module10</artifactId>
     <packaging>jar</packaging>
+
     <name>module10</name>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <tomcat.version>9.0.78</tomcat.version>
     </properties>
-
-    <dependencies>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-webmvc</artifactId>
-            <version>5.3.14</version>
-        </dependency>
-        <dependency>
-            <groupId>org.glassfish.web</groupId>
-            <artifactId>jakarta.servlet.jsp.jstl</artifactId>
-            <version>1.2.6</version>
-        </dependency>
-
-        <dependency>
-            <groupId>jakarta.servlet.jsp.jstl</groupId>
-            <artifactId>jakarta.servlet.jsp.jstl-api</artifactId>
-            <version>1.2.7</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.apache.tomcat.embed</groupId>
-            <artifactId>tomcat-embed-jasper</artifactId>
-            <version>${tomcat.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.apache.tomcat.embed</groupId>
-            <artifactId>tomcat-embed-el</artifactId>
-            <version>${tomcat.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.apache.tomcat</groupId>
-            <artifactId>tomcat-jsp-api</artifactId>
-            <version>${tomcat.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.apache.tomcat.embed</groupId>
-            <artifactId>tomcat-embed-core</artifactId>
-            <version>${tomcat.version}</version>
-            <scope>compile</scope>
-        </dependency>
-    </dependencies>
 
 </project>
