@@ -19,7 +19,9 @@ public class FinanceService {
 
             if (sumValue < 50000) {
                 throw new IllegalArgumentException("Минимальная сумма на момент открытия вклада 50 000 рублей");
-            } else {
+            }
+
+            else {
                 return (double) Math.round((sumValue * Math.pow(1 + (percentageValue / 100), yearsValue)) * 100) / 100;
             }
 
