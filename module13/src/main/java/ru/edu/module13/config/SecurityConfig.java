@@ -1,0 +1,62 @@
+package ru.edu.module13.config;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
+import org.springframework.security.config.Customizer;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.SecurityFilterChain;
+import ru.edu.module13.entity.Auth;
+import ru.edu.module13.repository.AuthRepository;
+
+import java.util.stream.Collectors;
+
+@Configuration
+@EnableWebSecurity
+public class SecurityConfig {
+    @Autowired
+    private AuthRepository authRepository;
+
+    @Bean
+    public UserDetailsService userDetailsService() {
+        return username -> {
+            Auth auth = authRepository.findByUsername(username);
+            if (auth == null) {
+                throw new UsernameNotFoundException("Пользователь под именем " + username + " не найден!");
+            }
+            return new org.springframework.security.core.userdetails.User(
+                    auth.getUsername(),
+                    auth.getPassword(),
+                    auth.getRoles().stream()
+                            .map(role -> new SimpleGrantedAuthority(role.getName()))
+                            .collect(Collectors.toList()));
+        };
+    }
+
+    @Bean
+    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+        http
+                .csrf(AbstractHttpConfigurer::disable)
+                .authorizeHttpRequests((authorize) -> authorize
+                        .requestMatchers(HttpMethod.GET).hasAnyRole("USER", "ADMIN")
+                        .requestMatchers(HttpMethod.POST).hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.DELETE).hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.PUT).hasRole("ADMIN"))
+                .httpBasic(Customizer.withDefaults());
+
+        return http.build();
+    }
+
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
+}
